@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_backpack.xml" value="0.1275" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_balance.xml" value="0.108" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_battle.xml" value="0.1275" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_favorite.xml" value="0.1275" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_grass.xml" value="0.1275" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_height.xml" value="0.108" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_image.xml" value="0.1315" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_mic.xml" value="0.108" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_normal.xml" value="0.1275" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_pokeball.xml" value="0.1155" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_unknown.xml" value="0.1275" />
+        <entry key="..\:/Users/Jeferson/Desktop/PokedexCompose/app/src/main/res/drawable/ic_water.xml" value="0.2295" />
+        <entry key="..\:/Users/Jeferson/Documents/AndroidStudio/PokedexCompose/app/src/main/res/drawable/ic_mic.xml" value="0.1935" />
+        <entry key="..\:/Users/Jeferson/Documents/AndroidStudio/PokedexCompose/app/src/main/res/drawable/ic_pokeball.xml" value="0.1335" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

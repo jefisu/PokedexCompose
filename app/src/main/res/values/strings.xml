@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PokedexCompose</string>
+    <string name="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.</string>
+    <string name="abilities">Abilities</string>
+    <string name="error_couldnt_reach_server">Oops! Couldn\'t reach server. \n Check your internet connection.</string>
+    <string name="oops_something_went_wrong">Oops! Something went wrong. Please try again.</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="there_are_no_saved_items">There are no saved items</string>
+    <string name="types">Types</string>
+    <string name="pokedex">Pokedex</string>
+    <string name="moves">Moves</string>
+    <string name="favorites">Favorites</string>
+    <string name="pokemon">Pokemon</string>
+    <string name="what_are_you_looking_for">What are \nyou looking for?</string>
+</resources>
