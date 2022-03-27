@@ -1,6 +1,5 @@
 package com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text

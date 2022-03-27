@@ -25,7 +25,6 @@ import com.jefisu.pokedexcompose.core.components.PokemonItem
 import com.jefisu.pokedexcompose.core.presentation.StandardLoadingErrorScreen
 import com.jefisu.pokedexcompose.core.util.Screen
 import com.jefisu.pokedexcompose.core.util.asString
-import com.jefisu.pokedexcompose.feature_pokedex.domain.model.Pokemon
 import com.jefisu.pokedexcompose.feature_pokedex.presentation.home.components.CustomCard
 import com.jefisu.pokedexcompose.feature_pokedex.presentation.home.components.SearchBar
 import com.jefisu.pokedexcompose.feature_pokedex.util.parseTypeToColor

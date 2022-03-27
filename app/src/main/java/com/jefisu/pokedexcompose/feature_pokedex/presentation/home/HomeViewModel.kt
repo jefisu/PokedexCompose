@@ -27,37 +27,32 @@ class HomeViewModel @Inject constructor(
 
     fun onEvent(event: HomeEvent) {
         when (event) {
-            is HomeEvent.GetSearchPokemon -> {
-                if (event.query.isNotEmpty()) {
-                    state = state.copy(query = event.query, isLoading = true)
-                    jobPokemon?.cancel()
-                    jobPokemon = viewModelScope.launch {
-                        delay(300)
-                        when (val result =
-                            pokemonUseCase.getPokemonByName(event.query.lowercase())) {
-                            is Resource.Success -> {
-                                state = state.copy(
-                                    pokemon = result.data!!,
-                                    isLoading = false
-                                )
-                            }
-                            is Resource.Error -> {
-                                state = state.copy(
-                                    hasError = true,
-                                    errorMessage = result.uiText ?: UiText.unknownError(),
-                                    isLoading = false
-                                )
-                            }
-                        }
+            is HomeEvent.GetSearchPokemon -> if (event.query.isNotEmpty()) {
+                state = state.copy(
+                    query = event.query,
+                    isLoading = true
+                )
+                jobPokemon?.cancel()
+                jobPokemon = viewModelScope.launch {
+                    delay(300)
+                    val result = pokemonUseCase.getPokemonByName(event.query.lowercase())
+                    state = when (result) {
+                        is Resource.Success -> state.copy(
+                            pokemon = result.data!!,
+                            isLoading = false
+                        )
+                        is Resource.Error -> state.copy(
+                            hasError = true,
+                            errorMessage = result.uiText ?: UiText.unknownError(),
+                            isLoading = false
+                        )
                     }
                 }
             }
-            is HomeEvent.ClearSearchText -> {
-                state = state.copy(
-                    pokemon = Pokemon(),
-                    query = ""
-                )
-            }
+            is HomeEvent.ClearSearchText -> state = state.copy(
+                pokemon = Pokemon(),
+                query = ""
+            )
         }
     }
 }

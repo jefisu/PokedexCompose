@@ -24,6 +24,7 @@ import coil.compose.rememberImagePainter
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.jefisu.pokedexcompose.R
+import com.jefisu.pokedexcompose.core.components.RotatingImageAnimation
 import com.jefisu.pokedexcompose.feature_pokedex.domain.model.Pokemon
 import com.jefisu.pokedexcompose.feature_pokedex.util.Page
 import com.jefisu.pokedexcompose.ui.theme.spacing
@@ -45,6 +46,11 @@ fun PokemonInfo(
         modifier = modifier,
         contentAlignment = Alignment.TopCenter
     ) {
+        RotatingImageAnimation(
+            image = R.drawable.ic_pokeball,
+            size = 200.dp,
+            modifier = Modifier.graphicsLayer { translationY = 50f }
+        )
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -75,7 +81,7 @@ fun PokemonInfo(
         Image(
             painter = rememberImagePainter(data = pokemonInfo.imageUrl),
             contentDescription = null,
-            modifier = imgModifier.graphicsLayer(translationY = 145f)
+            modifier = imgModifier.graphicsLayer { translationY = 145f }
         )
     }
 }

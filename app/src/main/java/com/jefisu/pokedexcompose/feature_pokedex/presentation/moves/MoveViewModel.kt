@@ -28,20 +28,17 @@ class MoveViewModel @Inject constructor(
     private fun getMoves() {
         state = state.copy(isLoading = true)
         viewModelScope.launch {
-            when (val result = pokemonUseCase.getMoves(PAGE_SIZE, 0 * PAGE_SIZE)) {
-                is Resource.Success -> {
-                    state = state.copy(
-                        moves = result.data!!.groupBy { it.type },
-                        isLoading = false
-                    )
-                }
-                is Resource.Error -> {
-                    state = state.copy(
-                        isLoading = false,
-                        hasError = true,
-                        errorMessage = result.uiText ?: UiText.unknownError()
-                    )
-                }
+            val result = pokemonUseCase.getMoves(PAGE_SIZE, 0 * PAGE_SIZE)
+            state = when (result) {
+                is Resource.Success -> state.copy(
+                    moves = result.data!!.groupBy { it.type },
+                    isLoading = false
+                )
+                is Resource.Error -> state.copy(
+                    isLoading = false,
+                    hasError = true,
+                    errorMessage = result.uiText ?: UiText.unknownError()
+                )
             }
         }
     }

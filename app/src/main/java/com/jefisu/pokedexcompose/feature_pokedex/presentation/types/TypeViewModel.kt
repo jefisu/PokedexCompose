@@ -28,16 +28,17 @@ class TypeViewModel @Inject constructor(
     private fun getTypes() {
         state = state.copy(isLoading = true)
         viewModelScope.launch {
-            when (val result = pokemonUseCase.getTypesPokemon()) {
+            val result = pokemonUseCase.getTypesPokemon()
+            state = when (result) {
                 is Resource.Success -> {
                     delay(500L)
-                    state = state.copy(
+                    state.copy(
                         types = result.data!!,
                         isLoading = false
                     )
                 }
                 is Resource.Error -> {
-                    state = state.copy(
+                    state.copy(
                         isLoading = false,
                         hasError = true,
                         errorMessage = result.uiText ?: UiText.unknownError()

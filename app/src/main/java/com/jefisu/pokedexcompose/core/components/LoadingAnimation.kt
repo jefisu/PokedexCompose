@@ -19,7 +19,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun LoadingAnimation(
     modifier: Modifier = Modifier,
-    image: Int = R.drawable.ic_pokeball_loading,
+    image: Int = R.drawable.pokeball,
     imageSize: Dp = 50.dp,
     spaceBetween: Dp = 10.dp,
     travelDistance: Dp = 20.dp
