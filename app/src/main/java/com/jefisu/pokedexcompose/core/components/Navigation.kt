@@ -37,7 +37,12 @@ fun Navigation(
         composable(
             route = Screen.Home.route
         ) {
-            HomeScreen(navController = navController)
+            Animation(
+                enterTransition = slideInHorizontally() + fadeIn(),
+                exitTransition = slideOutHorizontally() + fadeOut()
+            ) {
+                HomeScreen(navController, context)
+            }
         }
         composable(
             route = Screen.Detail.route + "/{name}",

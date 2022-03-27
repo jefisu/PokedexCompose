@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.vector.DefaultTintColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -28,15 +29,15 @@ fun ItemTypeStatAb(
     selected: Boolean = true,
     boxColor: Color = LocalContentColor.current.copy(ContentAlpha.disabled),
     boxShape: Shape = CircleShape,
-    boxHeight: Dp = 90.dp,
-    boxWidth: Dp = 30.dp,
+    boxHeight: Dp = 30.dp,
+    boxWidth: Dp = 90.dp,
     img: Int? = null,
     imgSize: Dp = 30.dp
 ) {
     Box(
         modifier = modifier
-            .width(boxHeight)
-            .height(boxWidth)
+            .width(boxWidth)
+            .height(boxHeight)
             .clip(boxShape)
             .background(if (selected) boxColor else Color.Transparent),
         contentAlignment = Alignment.Center
@@ -56,6 +57,12 @@ fun ItemTypeStatAb(
                 )
             }
         }
-        Text(text = text.replaceFirstChar { it.titlecase() })
+        Text(
+            text = text.replaceFirstChar { it.titlecase() },
+            color = when {
+                selected -> MaterialTheme.colors.onSurface
+                else -> LocalContentColor.current.copy(ContentAlpha.disabled)
+            }
+        )
     }
 }

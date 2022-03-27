@@ -1,6 +1,7 @@
 package com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -10,6 +11,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
@@ -33,6 +36,7 @@ fun CharacteristicsAbout(
         Image(
             painter = painterResource(painter),
             contentDescription = null,
+            colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface),
             modifier = Modifier.size(imageSize)
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.extraSmall))

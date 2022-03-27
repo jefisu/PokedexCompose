@@ -72,16 +72,11 @@ fun InfoTabs(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = MaterialTheme.spacing.medium),
+                .padding(top = 12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             when (page) {
                 is Page.About -> {
-                    Text(
-                        text = stringResource(R.string.description),
-                        color = LocalContentColor.current.copy(ContentAlpha.disabled)
-                    )
-                    Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
                     Row {
                         CharacteristicsAbout(
                             painter = R.drawable.ic_balance,
@@ -101,12 +96,15 @@ fun InfoTabs(
                         style = MaterialTheme.typography.h5
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
-                    Row {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
                         for (ability in pokemonInfo.abilities) {
                             ItemTypeStatAb(
                                 text = ability,
                                 boxColor = LocalContentColor.current.copy(ContentAlpha.disabled),
-                                modifier = Modifier.padding(MaterialTheme.spacing.small)
+                                boxWidth = 100.dp
                             )
                             Spacer(modifier = Modifier.width(MaterialTheme.spacing.medium))
                         }
@@ -141,7 +139,7 @@ fun InfoTabs(
                             items(pokemonInfo.moves) {
                                 ItemTypeStatAb(
                                     text = it,
-                                    boxHeight = 50.dp,
+                                    boxHeight = 35.dp,
                                     modifier = Modifier.padding(bottom = 12.dp, end = 8.dp)
                                 )
                             }

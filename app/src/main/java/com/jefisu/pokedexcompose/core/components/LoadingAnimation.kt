@@ -1,29 +1,26 @@
 package com.jefisu.pokedexcompose.core.components
 
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.jefisu.pokedexcompose.R
 import kotlinx.coroutines.delay
 
 @Composable
 fun LoadingAnimation(
     modifier: Modifier = Modifier,
-    circleSize: Dp = 25.dp,
-    circleColor: Color = MaterialTheme.colors.primary,
+    image: Int = R.drawable.ic_pokeball_loading,
+    imageSize: Dp = 50.dp,
     spaceBetween: Dp = 10.dp,
     travelDistance: Dp = 20.dp
 ) {
@@ -52,23 +49,19 @@ fun LoadingAnimation(
         }
     }
 
-    val distance = with(LocalDensity.current) { travelDistance.toPx() }
-
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(spaceBetween)
     ) {
         circles.forEach { v ->
-            Box(
+            Image(
+                painter = painterResource(image),
+                contentDescription = "Loading image",
                 modifier = Modifier
-                    .size(circleSize)
+                    .size(imageSize)
                     .graphicsLayer {
                         translationY = -v.value * travelDistance.toPx()
                     }
-                    .background(
-                        color = circleColor,
-                        shape = CircleShape
-                    )
             )
         }
     }

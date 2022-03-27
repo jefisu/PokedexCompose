@@ -7,8 +7,7 @@ class DeleteFavoritePokemon(
     private val repository: PokemonRepository
 ) {
     suspend operator fun invoke(pokemon: Pokemon) {
-        if (pokemon.id != 0) {
-            repository.deleteFavoritePokemon(pokemon)
-        }
+        if (pokemon.id == 0) return
+        repository.deleteFavoritePokemon(pokemon)
     }
 }

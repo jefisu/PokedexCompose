@@ -24,8 +24,9 @@ class DetailViewModel @Inject constructor(
         private set
 
     init {
-        val name = savedStateHandle.get<String>("name") ?: ""
-        onEvent(DetailEvent.GetSavedPokemon(name))
+        savedStateHandle.get<String>("name")?.let {
+            onEvent(DetailEvent.GetSavedPokemon(it))
+        }
     }
 
     fun onEvent(event: DetailEvent) {
@@ -48,18 +49,16 @@ class DetailViewModel @Inject constructor(
                 }
                 is DetailEvent.GetSavedPokemon -> {
                     val result = pokemonUseCase.getFavoritePokemon(event.name)
-                    if (result == null) {
-                        onEvent(DetailEvent.GetPokemonDetail(event.name))
-                    } else {
-                        state = state.copy(pokemon = result)
+                    if (result == null) onEvent(DetailEvent.GetPokemonDetail(event.name))
+                    result?.let {
+                        state = state.copy(pokemon = it)
                     }
                 }
                 is DetailEvent.SaveDeleteFavoritePokemon -> {
                     state = state.copy(pokemon = state.pokemon.copy(isFavorite = !event.selected))
-                    if (event.selected) {
-                        pokemonUseCase.deleteFavoritePokemon(state.pokemon)
-                    } else {
-                        pokemonUseCase.insertFavoritePokemon(state.pokemon)
+                    when(event.selected) {
+                        true -> pokemonUseCase.deleteFavoritePokemon(state.pokemon)
+                        else -> pokemonUseCase.insertFavoritePokemon(state.pokemon)
                     }
                 }
             }

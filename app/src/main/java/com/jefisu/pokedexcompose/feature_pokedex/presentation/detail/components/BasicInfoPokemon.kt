@@ -47,10 +47,9 @@ fun BasicInfoPokemon(
         Row(
             modifier = Modifier.padding(start = MaterialTheme.spacing.medium)
         ) {
-            val darkMode = if (!isSystemInDarkTheme()) parseTypeToColor(types[0]) else Color.White.copy(alpha = 0.2f)
             ItemTypeStatAb(
                 text = types[0],
-                boxColor = darkMode
+                boxColor = Color.White.copy(alpha = 0.2f)
             )
             Spacer(modifier = Modifier.width(12.dp))
             if (types.size > 1) {

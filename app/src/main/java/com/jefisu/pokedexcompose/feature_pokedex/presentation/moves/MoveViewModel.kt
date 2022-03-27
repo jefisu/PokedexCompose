@@ -18,8 +18,6 @@ class MoveViewModel @Inject constructor(
     private val pokemonUseCase: PokemonUseCase
 ) : ViewModel() {
 
-    private val curPage = 0
-
     var state by mutableStateOf(MoveState())
         private set
 
@@ -30,7 +28,7 @@ class MoveViewModel @Inject constructor(
     private fun getMoves() {
         state = state.copy(isLoading = true)
         viewModelScope.launch {
-            when (val result = pokemonUseCase.getMoves(PAGE_SIZE, curPage * PAGE_SIZE)) {
+            when (val result = pokemonUseCase.getMoves(PAGE_SIZE, 0 * PAGE_SIZE)) {
                 is Resource.Success -> {
                     state = state.copy(
                         moves = result.data!!.groupBy { it.type },

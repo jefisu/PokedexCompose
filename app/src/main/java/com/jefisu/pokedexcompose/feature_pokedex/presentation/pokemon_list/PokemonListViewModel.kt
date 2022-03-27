@@ -28,10 +28,9 @@ class PokemonListViewModel @Inject constructor(
     }
 
     fun getPokemons() {
+        state = state.copy(isLoading = true)
         viewModelScope.launch {
-            state = state.copy(isLoading = true)
-            val result = pokemonUseCase.getPokemons(PAGE_SIZE, curPage * PAGE_SIZE)
-            when (result) {
+            when (val result = pokemonUseCase.getPokemons(PAGE_SIZE, curPage * PAGE_SIZE)) {
                 is Resource.Success -> {
                     state = state.copy(
                         pokemons = result.data!!,

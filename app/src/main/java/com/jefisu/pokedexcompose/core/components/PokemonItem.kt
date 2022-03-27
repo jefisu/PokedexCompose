@@ -52,7 +52,7 @@ fun PokemonItem(
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(MaterialTheme.spacing.medium)
         ) {
             Text(

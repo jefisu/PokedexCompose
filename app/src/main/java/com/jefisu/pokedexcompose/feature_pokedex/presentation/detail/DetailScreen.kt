@@ -15,8 +15,9 @@ import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.jefisu.pokedexcompose.core.components.TopBar
-import com.jefisu.pokedexcompose.core.presentation.StandardErrorScreen
+import com.jefisu.pokedexcompose.core.presentation.StandardLoadingErrorScreen
 import com.jefisu.pokedexcompose.core.util.asString
+import com.jefisu.pokedexcompose.feature_pokedex.domain.model.Pokemon
 import com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components.BasicInfoPokemon
 import com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components.PokemonInfo
 import com.jefisu.pokedexcompose.feature_pokedex.util.Page
@@ -65,7 +66,8 @@ fun DetailScreen(
             imgModifier = Modifier.size(150.dp)
         )
     }
-    if (state.hasError) {
-        StandardErrorScreen(errorMessage = state.errorMessage.asString(context))
-    }
+    StandardLoadingErrorScreen(
+        hasError = state.hasError,
+        errorMessage = state.errorMessage.asString(context)
+    )
 }

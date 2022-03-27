@@ -1,14 +1,15 @@
 package com.jefisu.pokedexcompose.core.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
@@ -27,14 +28,14 @@ fun ListItem(
     textFontSize: TextUnit = 22.sp,
     seconderyText: String = "",
     number: Int? = null,
-    cardShape: Shape = RoundedCornerShape(16.dp),
+    shape: Shape = RoundedCornerShape(16.dp),
     imageSize: Dp = 50.dp
 ) {
     val value = seconderyText.ifEmpty { text }
-    Card(
-        backgroundColor = parseTypeToColor(value).copy(alpha = 0.6f),
-        shape = cardShape,
+    Box(
         modifier = modifier
+            .clip(shape)
+            .background(parseTypeToColor(value).copy(alpha = 0.6f))
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
