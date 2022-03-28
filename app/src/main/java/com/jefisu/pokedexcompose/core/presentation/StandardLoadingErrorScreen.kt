@@ -36,7 +36,7 @@ fun StandardLoadingErrorScreen(
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Image(
-                        painter = painterResource(R.drawable.ic_pikachu),
+                        painter = painterResource(R.drawable.pikachu),
                         contentDescription = null
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
