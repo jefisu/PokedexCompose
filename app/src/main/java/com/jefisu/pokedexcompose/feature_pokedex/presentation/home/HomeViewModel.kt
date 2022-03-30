@@ -39,19 +39,25 @@ class HomeViewModel @Inject constructor(
                     state = when (result) {
                         is Resource.Success -> state.copy(
                             pokemon = result.data!!,
-                            isLoading = false
+                            isVisiblePokemon = true,
+                            isLoading = false,
+                            hasError = false
                         )
                         is Resource.Error -> state.copy(
+                            isVisiblePokemon = false,
+                            isLoading = false,
                             hasError = true,
-                            errorMessage = result.uiText ?: UiText.unknownError(),
-                            isLoading = false
+                            errorMessage = result.uiText ?: UiText.unknownError()
                         )
                     }
                 }
             }
             is HomeEvent.ClearSearchText -> state = state.copy(
                 pokemon = Pokemon(),
-                query = ""
+                query = "",
+                isVisiblePokemon = false,
+                isLoading = false,
+                hasError = false
             )
         }
     }

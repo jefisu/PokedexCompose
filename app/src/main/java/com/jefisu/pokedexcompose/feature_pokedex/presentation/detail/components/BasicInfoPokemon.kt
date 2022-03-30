@@ -21,7 +21,10 @@ fun BasicInfoPokemon(
     index: String,
     types: List<String>
 ) {
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -42,15 +45,14 @@ fun BasicInfoPokemon(
                 fontSize = 20.sp
             )
         }
-        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
         Row(
-            modifier = Modifier.padding(start = MaterialTheme.spacing.medium)
+            modifier = Modifier.padding(start = MaterialTheme.spacing.medium),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             ItemTypeStatAb(
-                text = types[0],
+                text = types.first(),
                 boxColor = Color.White.copy(alpha = 0.2f)
             )
-            Spacer(modifier = Modifier.width(12.dp))
             if (types.size > 1) {
                 ItemTypeStatAb(
                     text = types[1],

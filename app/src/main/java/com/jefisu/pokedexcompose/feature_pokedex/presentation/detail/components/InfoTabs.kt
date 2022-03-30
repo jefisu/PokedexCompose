@@ -22,7 +22,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.jefisu.pokedexcompose.R
-import com.jefisu.pokedexcompose.core.components.Animation
+import com.jefisu.pokedexcompose.core.components.StartAnimation
 import com.jefisu.pokedexcompose.core.components.ItemTypeStatAb
 import com.jefisu.pokedexcompose.feature_pokedex.domain.model.Pokemon
 import com.jefisu.pokedexcompose.feature_pokedex.util.Page
@@ -111,7 +111,7 @@ fun InfoTabs(
                     }
                 }
                 is Page.BaseStats -> {
-                    Animation(
+                    StartAnimation(
                         enterTransition = slideInVertically(
                             animationSpec = tween(400)
                         ) + scaleIn() + fadeIn(),
@@ -127,7 +127,7 @@ fun InfoTabs(
                     }
                 }
                 is Page.Moves -> {
-                    Animation(
+                    StartAnimation(
                         enterTransition = slideInVertically(
                             animationSpec = tween(400)
                         ) + scaleIn() + fadeIn(),

@@ -10,8 +10,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import com.jefisu.pokedexcompose.ui.theme.spacing
@@ -45,16 +43,11 @@ fun TopBar(
             }
         }
         if (icon2 != null) {
-            ClickAnimation(selected = selected) {
-                IconButton(onClick = onClickIcon2) {
-                    Icon(
-                        imageVector = icon2,
-                        contentDescription = null,
-                        tint = if (selected) Color.Red else MaterialTheme.colors.onSurface,
-                        modifier = Modifier.scale(it)
-                    )
-                }
-            }
+            IconButtonAnimation(
+                selected = selected,
+                icon = icon2,
+                onClick = onClickIcon2
+            )
         }
     }
 }

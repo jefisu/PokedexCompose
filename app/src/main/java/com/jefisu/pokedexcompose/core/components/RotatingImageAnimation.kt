@@ -25,7 +25,7 @@ fun RotatingImageAnimation(
         targetValue = 360f,
         animationSpec = infiniteRepeatable(
             animation = tween(
-                durationMillis = 5000,
+                durationMillis = 3000,
                 easing = LinearEasing
             ),
             repeatMode = RepeatMode.Restart

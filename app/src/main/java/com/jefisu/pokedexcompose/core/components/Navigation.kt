@@ -37,7 +37,7 @@ fun Navigation(
         composable(
             route = Screen.Home.route
         ) {
-            Animation(
+            StartAnimation(
                 enterTransition = slideInHorizontally() + fadeIn(),
                 exitTransition = slideOutHorizontally() + fadeOut()
             ) {
@@ -52,7 +52,7 @@ fun Navigation(
                 }
             )
         ) {
-            Animation(
+            StartAnimation(
                 enterTransition = scaleIn() + fadeIn(),
                 exitTransition = scaleOut() + fadeOut()
             ) {
@@ -60,7 +60,7 @@ fun Navigation(
             }
         }
         composable(route = Screen.PokemonList.route) {
-            Animation(
+            StartAnimation(
                 enterTransition = slideInHorizontally() + fadeIn(),
                 exitTransition = slideOutHorizontally() + fadeOut()
             ) {
@@ -68,7 +68,7 @@ fun Navigation(
             }
         }
         composable(Screen.Move.route) {
-            Animation(
+            StartAnimation(
                 enterTransition = slideInHorizontally() + fadeIn(),
                 exitTransition = slideOutHorizontally() + fadeOut()
             ) {
@@ -76,7 +76,7 @@ fun Navigation(
             }
         }
         composable(Screen.Type.route) {
-            Animation(
+            StartAnimation(
                 enterTransition = slideInHorizontally() + fadeIn(),
                 exitTransition = slideOutHorizontally() + fadeOut()
             ) {
@@ -84,7 +84,7 @@ fun Navigation(
             }
         }
         composable(Screen.Favorite.route) {
-            Animation(
+            StartAnimation(
                 enterTransition = slideInHorizontally() + fadeIn(),
                 exitTransition = slideOutHorizontally() + fadeOut()
             ) {
