@@ -168,7 +168,11 @@ fun InfoTabs(
                             verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium),
                             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
                         ) {
-                            val moves = pokemonInfo.moves.subList(0, 10)
+                            val moves = if (pokemonInfo.moves.size >= 10) {
+                                pokemonInfo.moves.subList(0, 10)
+                            } else {
+                                pokemonInfo.moves
+                            }
                             items(moves) {
                                 ItemTypeStatAb(
                                     text = it,
