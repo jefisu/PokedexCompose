@@ -59,17 +59,20 @@ fun PokemonInfo(
                 .background(MaterialTheme.colors.background)
         ) {
             Column(
+                verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = MaterialTheme.spacing.medium)
-                    .padding(top = MaterialTheme.spacing.medium)
+                    .padding(
+                        start = 20.dp,
+                        end = 20.dp,
+                        top = 20.dp
+                    )
             ) {
                 Text(
                     text = stringResource(R.string.description),
                     color = LocalContentColor.current.copy(ContentAlpha.disabled),
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Justify
                 )
-                Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
                 InfoTabs(
                     pagerState = pagerState,
                     backgroundColor = backgroundColor,
@@ -81,7 +84,7 @@ fun PokemonInfo(
         Image(
             painter = rememberImagePainter(data = pokemonInfo.imageUrl),
             contentDescription = null,
-            modifier = imgModifier.graphicsLayer { translationY = 145f }
+            modifier = imgModifier.graphicsLayer { translationY = 150f }
         )
     }
 }

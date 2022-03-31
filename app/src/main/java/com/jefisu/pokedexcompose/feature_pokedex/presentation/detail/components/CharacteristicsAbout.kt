@@ -1,17 +1,14 @@
 package com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
@@ -24,13 +21,14 @@ import com.jefisu.pokedexcompose.ui.theme.spacing
 fun CharacteristicsAbout(
     modifier: Modifier = Modifier,
     painter: Int,
-    text: String,
+    value: String,
     dataUnit: String,
     imageSize: Dp = 60.dp,
     textFontSize: TextUnit = 25.sp
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall),
         modifier = modifier
     ) {
         Image(
@@ -39,9 +37,8 @@ fun CharacteristicsAbout(
             colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface),
             modifier = Modifier.size(imageSize)
         )
-        Spacer(modifier = Modifier.height(MaterialTheme.spacing.extraSmall))
         Text(
-            text = "$text $dataUnit",
+            text = "$value $dataUnit",
             fontSize = textFontSize
         )
     }

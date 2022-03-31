@@ -1,6 +1,9 @@
 package com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -22,7 +25,8 @@ fun BaseStats(
         pokemonInfo.stats.maxOf { it.baseStat }
     }
     Column(
-        modifier = modifier
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
     ) {
         for (stat in pokemonInfo.stats) {
             Box(modifier = Modifier.fillMaxWidth()) {
@@ -34,7 +38,6 @@ fun BaseStats(
                     animDelay = 1 * animDelayPerItem
                 )
             }
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
         }
     }
 }
