@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jefisu.pokedexcompose.core.util.Constants.PAGE_SIZE
+import com.jefisu.pokedexcompose.core.util.Constants.CURRENT_OFFSET
 import com.jefisu.pokedexcompose.core.util.Resource
 import com.jefisu.pokedexcompose.core.util.UiText
 import com.jefisu.pokedexcompose.feature_pokedex.domain.use_case.PokemonUseCase
@@ -18,6 +18,8 @@ class MoveViewModel @Inject constructor(
     private val pokemonUseCase: PokemonUseCase
 ) : ViewModel() {
 
+    private var currentPageSize = 0
+
     var state by mutableStateOf(MoveState())
         private set
 
@@ -25,20 +27,26 @@ class MoveViewModel @Inject constructor(
         getMoves()
     }
 
-    private fun getMoves() {
+    fun getMoves() {
         state = state.copy(isLoading = true)
         viewModelScope.launch {
-            val result = pokemonUseCase.getMoves(PAGE_SIZE, 0 * PAGE_SIZE)
-            state = when (result) {
-                is Resource.Success -> state.copy(
-                    moves = result.data!!.groupBy { it.type },
-                    isLoading = false
-                )
-                is Resource.Error -> state.copy(
-                    isLoading = false,
-                    hasError = true,
-                    errorMessage = result.uiText ?: UiText.unknownError()
-                )
+            val result = pokemonUseCase.getMoves(currentPageSize, CURRENT_OFFSET)
+            when (result) {
+                is Resource.Success -> {
+                    state = state.copy(
+                        moves = result.data!!,
+                        isLoading = false,
+                        hasError = false
+                    )
+                    currentPageSize += 10
+                }
+                is Resource.Error -> {
+                    state = state.copy(
+                        isLoading = false,
+                        hasError = true,
+                        errorMessage = result.uiText ?: UiText.unknownError()
+                    )
+                }
             }
         }
     }

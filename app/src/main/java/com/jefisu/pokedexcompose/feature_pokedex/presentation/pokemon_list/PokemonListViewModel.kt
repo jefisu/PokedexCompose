@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jefisu.pokedexcompose.core.util.Constants.PAGE_SIZE
+import com.jefisu.pokedexcompose.core.util.Constants.CURRENT_OFFSET
 import com.jefisu.pokedexcompose.core.util.Resource
 import com.jefisu.pokedexcompose.core.util.UiText
 import com.jefisu.pokedexcompose.feature_pokedex.domain.use_case.PokemonUseCase
@@ -18,7 +18,7 @@ class PokemonListViewModel @Inject constructor(
     private val pokemonUseCase: PokemonUseCase
 ) : ViewModel() {
 
-    private var curPage = 0
+    private var currentPageSize = 10
 
     var state by mutableStateOf(PokemonListState())
         private set
@@ -30,16 +30,18 @@ class PokemonListViewModel @Inject constructor(
     fun getPokemons() {
         state = state.copy(isLoading = true)
         viewModelScope.launch {
-            when (val result = pokemonUseCase.getPokemons(PAGE_SIZE, curPage * PAGE_SIZE)) {
+            when (val result = pokemonUseCase.getPokemons(currentPageSize, CURRENT_OFFSET)) {
                 is Resource.Success -> {
                     state = state.copy(
-                        pokemons = result.data!!,
-                        isLoading = false
+                        pokemons = result.data ?: emptyList(),
+                        isLoading = false,
+                        hasError = false
                     )
-                    curPage++
+                    currentPageSize += 10
                 }
                 is Resource.Error -> {
                     state = state.copy(
+                        pokemons = result.data ?: emptyList(),
                         isLoading = false,
                         hasError = true,
                         errorMessage = result.uiText ?: UiText.unknownError()

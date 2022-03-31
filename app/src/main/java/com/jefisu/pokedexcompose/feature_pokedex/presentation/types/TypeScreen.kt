@@ -1,6 +1,9 @@
 package com.jefisu.pokedexcompose.feature_pokedex.presentation.types
 
 import android.content.Context
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
@@ -31,22 +34,31 @@ fun TypeScreen(
 ) {
     val state = viewModel.state
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(MaterialTheme.spacing.extraSmall)
+        modifier = Modifier.fillMaxSize()
     ) {
         TopBar(
             title = stringResource(R.string.types),
             onClickIcon1 = navController::navigateUp
         )
         Spacer(modifier = Modifier.height(8.dp))
-        LazyVerticalGrid(cells = GridCells.Fixed(2)) {
+        LazyVerticalGrid(
+            cells = GridCells.Fixed(2),
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(MaterialTheme.spacing.small)
+                .animateContentSize(
+                    animationSpec = tween(
+                        durationMillis = 300,
+                        easing = LinearEasing
+                    )
+                )
+        ) {
             items(state.types) { type ->
                 ListItem(
                     text = type.name,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(end = 8.dp, bottom = 8.dp)
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }
