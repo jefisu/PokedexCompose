@@ -6,7 +6,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,7 +16,7 @@ import com.jefisu.pokedexcompose.ui.theme.spacing
 
 @Composable
 fun TopBar(
-    icon1: ImageVector = Icons.Default.ArrowBack,
+    icon1: ImageVector = Icons.Default.ArrowBackIosNew,
     icon2: ImageVector? = null,
     title: String = "",
     selected: Boolean = false,
