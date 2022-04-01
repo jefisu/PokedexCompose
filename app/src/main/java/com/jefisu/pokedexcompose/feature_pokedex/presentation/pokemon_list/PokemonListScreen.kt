@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -38,13 +37,12 @@ fun PokemonListScreen(
             title = stringResource(R.string.pokedex)
         )
         ListAnimation(
-            items = state.pokemons
+            items = state.pokemons,
+            isLoading = state.isLoading
         ) { index, pokemon ->
             val size = state.pokemons.size
-            if (index >= size - 1) {
-                LaunchedEffect(key1 = true) {
-                    viewModel.getPokemons()
-                }
+            if (index >= size - 1 && !state.isLoading) {
+                viewModel.getPokemons()
             }
             PokemonItem(
                 pokemonInfo = pokemon,

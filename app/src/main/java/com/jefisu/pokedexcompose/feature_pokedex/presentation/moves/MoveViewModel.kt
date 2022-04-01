@@ -18,7 +18,7 @@ class MoveViewModel @Inject constructor(
     private val pokemonUseCase: PokemonUseCase
 ) : ViewModel() {
 
-    private var currentPageSize = 0
+    private var currentPageSize = 10
 
     var state by mutableStateOf(MoveState())
         private set
@@ -38,7 +38,7 @@ class MoveViewModel @Inject constructor(
                         isLoading = false,
                         hasError = false
                     )
-                    currentPageSize += 10
+                    currentPageSize++
                 }
                 is Resource.Error -> {
                     state = state.copy(

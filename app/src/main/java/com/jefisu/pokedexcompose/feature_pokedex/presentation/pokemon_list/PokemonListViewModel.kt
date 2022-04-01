@@ -37,7 +37,7 @@ class PokemonListViewModel @Inject constructor(
                         isLoading = false,
                         hasError = false
                     )
-                    currentPageSize += 10
+                    currentPageSize++
                 }
                 is Resource.Error -> {
                     state = state.copy(

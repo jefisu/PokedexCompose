@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -32,13 +31,12 @@ fun MoveScreen(
             onClickIcon1 = navController::navigateUp
         )
         ListAnimation(
-            items = state.moves
+            items = state.moves,
+            isLoading = state.isLoading
         ) { index, move ->
             val size = state.moves.size
-            if (index >= size - 1) {
-                LaunchedEffect(key1 = true) {
-                    viewModel.getMoves()
-                }
+            if (index >= size - 1 && !state.isLoading) {
+                viewModel.getMoves()
             }
             ListItem(
                 text = move.name,
