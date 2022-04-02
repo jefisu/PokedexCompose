@@ -5,7 +5,7 @@ Pokedex app built with Jetpack Compose
 ## Screenshots
 
 <p align="center">
-    <img src="screenshots/home.png" width="250" alt="Home">
+    <img src="screenshots/home-app.png" width="250" alt="Home">
     <img src="screenshots/pokedex.png" width="250" alt="Pokedex">
     <img src="screenshots/pokedex-favorites.png" width="250" alt="Pokedex Favorites">
 </p>

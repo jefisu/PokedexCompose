@@ -7,9 +7,9 @@
     <string name="unknown_error">Unknown error</string>
     <string name="there_are_no_saved_items">There are no saved items</string>
     <string name="types">Types</string>
-    <string name="pokedex">Pokedex</string>
+    <string name="pokedex">Pokédex</string>
     <string name="moves">Moves</string>
     <string name="favorites">Favorites</string>
-    <string name="pokemon">Pokemon</string>
-    <string name="what_are_you_looking_for">What are \nyou looking for?</string>
+    <string name="what_are_you_looking_for">What Pokémon \nare you looking for?</string>
+    <string name="search_pokemon">Search Pokémon</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,6 +30,7 @@ import com.jefisu.pokedexcompose.feature_pokedex.util.parseTypeToColor
 import com.jefisu.pokedexcompose.ui.theme.LightBlue
 import com.jefisu.pokedexcompose.ui.theme.LightGreen
 import com.jefisu.pokedexcompose.ui.theme.LightPurple
+import com.jefisu.pokedexcompose.ui.theme.spacing
 
 @ExperimentalAnimationApi
 @ExperimentalPagerApi
@@ -44,18 +46,18 @@ fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(MaterialTheme.spacing.medium),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Text(
             text = stringResource(R.string.what_are_you_looking_for),
-            fontSize = 38.sp,
+            fontSize = 34.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(top = 28.dp)
         )
         SearchBar(
             text = state.query,
-            hint = "Search pokemon",
+            hint = stringResource(R.string.search_pokemon),
             onSearch = { viewModel.onEvent(HomeEvent.GetSearchPokemon(it)) },
             clearText = { viewModel.onEvent(HomeEvent.ClearSearchText) }
         )
@@ -76,7 +78,7 @@ fun HomeScreen(
         )
         ShowContentAnimation(isVisible = state.query.isBlank()) {
             CustomCard(
-                text = stringResource(R.string.pokemon),
+                text = stringResource(R.string.pokedex),
                 img = R.drawable.ic_pokeball,
                 onClick = { navController.navigate(Screen.PokemonList.route) },
                 imgModifier = Modifier
