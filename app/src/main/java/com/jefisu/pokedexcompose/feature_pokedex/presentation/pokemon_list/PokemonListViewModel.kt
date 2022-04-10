@@ -8,14 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.jefisu.pokedexcompose.core.util.Constants.CURRENT_OFFSET
 import com.jefisu.pokedexcompose.core.util.Resource
 import com.jefisu.pokedexcompose.core.util.UiText
-import com.jefisu.pokedexcompose.feature_pokedex.domain.use_case.PokemonUseCase
+import com.jefisu.pokedexcompose.feature_pokedex.domain.repository.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PokemonListViewModel @Inject constructor(
-    private val pokemonUseCase: PokemonUseCase
+    private val repository: PokemonRepository
 ) : ViewModel() {
 
     private var currentPageSize = 10
@@ -30,7 +30,7 @@ class PokemonListViewModel @Inject constructor(
     fun getPokemons() {
         state = state.copy(isLoading = true)
         viewModelScope.launch {
-            when (val result = pokemonUseCase.getPokemons(currentPageSize, CURRENT_OFFSET)) {
+            when (val result = repository.getPokemons(currentPageSize, CURRENT_OFFSET)) {
                 is Resource.Success -> {
                     state = state.copy(
                         pokemons = result.data ?: emptyList(),

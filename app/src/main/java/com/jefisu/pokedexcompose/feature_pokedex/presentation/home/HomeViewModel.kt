@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.jefisu.pokedexcompose.core.util.Resource
 import com.jefisu.pokedexcompose.core.util.UiText
 import com.jefisu.pokedexcompose.feature_pokedex.domain.model.Pokemon
-import com.jefisu.pokedexcompose.feature_pokedex.domain.use_case.PokemonUseCase
+import com.jefisu.pokedexcompose.feature_pokedex.domain.repository.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val pokemonUseCase: PokemonUseCase
+    private val repository: PokemonRepository
 ) : ViewModel() {
 
     var state by mutableStateOf(HomeState())
@@ -35,7 +35,7 @@ class HomeViewModel @Inject constructor(
                 jobPokemon?.cancel()
                 jobPokemon = viewModelScope.launch {
                     delay(300)
-                    val result = pokemonUseCase.getPokemonByName(event.query.lowercase())
+                    val result = repository.getPokemon(event.query.lowercase())
                     state = when (result) {
                         is Resource.Success -> state.copy(
                             pokemon = result.data!!,

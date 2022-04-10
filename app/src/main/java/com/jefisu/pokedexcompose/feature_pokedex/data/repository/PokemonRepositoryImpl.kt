@@ -2,7 +2,7 @@ package com.jefisu.pokedexcompose.feature_pokedex.data.repository
 
 import com.jefisu.pokedexcompose.core.util.Resource
 import com.jefisu.pokedexcompose.core.util.httpRequest
-import com.jefisu.pokedexcompose.feature_pokedex.data.local.PokemonDao
+import com.jefisu.pokedexcompose.feature_pokedex.data.local.PokemonDatabase
 import com.jefisu.pokedexcompose.feature_pokedex.data.remote.PokemonApi
 import com.jefisu.pokedexcompose.feature_pokedex.data.util.toMoveEntry
 import com.jefisu.pokedexcompose.feature_pokedex.data.util.toPokemon
@@ -14,11 +14,16 @@ import com.jefisu.pokedexcompose.feature_pokedex.domain.model.TypeEntry
 import com.jefisu.pokedexcompose.feature_pokedex.domain.repository.PokemonRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class PokemonRepositoryImpl(
+@Singleton
+class PokemonRepositoryImpl @Inject constructor(
     private val api: PokemonApi,
-    private val dao: PokemonDao
+    private val db: PokemonDatabase
 ) : PokemonRepository {
+
+    private val dao = db.dao
 
     override suspend fun getPokemon(name: String): Resource<Pokemon> {
         return httpRequest {

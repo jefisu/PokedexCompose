@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jefisu.pokedexcompose.core.util.Resource
 import com.jefisu.pokedexcompose.core.util.UiText
-import com.jefisu.pokedexcompose.feature_pokedex.domain.use_case.PokemonUseCase
+import com.jefisu.pokedexcompose.feature_pokedex.domain.repository.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TypeViewModel @Inject constructor(
-    private val pokemonUseCase: PokemonUseCase
+    private val repository: PokemonRepository
 ) : ViewModel() {
 
     var state by mutableStateOf(TypeState())
@@ -28,7 +28,7 @@ class TypeViewModel @Inject constructor(
     private fun getTypes() {
         state = state.copy(isLoading = true)
         viewModelScope.launch {
-            val result = pokemonUseCase.getTypesPokemon()
+            val result = repository.getTypes()
             state = when (result) {
                 is Resource.Success -> {
                     delay(500L)
