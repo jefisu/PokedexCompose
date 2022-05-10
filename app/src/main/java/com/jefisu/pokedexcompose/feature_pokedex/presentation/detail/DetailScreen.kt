@@ -4,7 +4,10 @@ import android.content.Context
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
@@ -17,7 +20,6 @@ import com.google.accompanist.pager.PagerState
 import com.jefisu.pokedexcompose.core.components.TopBar
 import com.jefisu.pokedexcompose.core.presentation.StandardLoadingErrorScreen
 import com.jefisu.pokedexcompose.core.util.asString
-import com.jefisu.pokedexcompose.feature_pokedex.domain.model.Pokemon
 import com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components.BasicInfoPokemon
 import com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components.PokemonInfo
 import com.jefisu.pokedexcompose.feature_pokedex.util.Page
@@ -62,8 +64,7 @@ fun DetailScreen(
             pagerState = pagerState,
             backgroundColor = typeColor,
             pages = listOf(Page.About, Page.BaseStats, Page.Moves),
-            pokemonInfo = state.pokemon,
-            imgModifier = Modifier.size(150.dp)
+            pokemonInfo = state.pokemon
         )
     }
     StandardLoadingErrorScreen(

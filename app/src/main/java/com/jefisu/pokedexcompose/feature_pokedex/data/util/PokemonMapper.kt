@@ -12,7 +12,7 @@ import com.jefisu.pokedexcompose.feature_pokedex.util.parseTypeToColor
 fun PokemonResponse.toPokemon(): Pokemon {
     return Pokemon(
         name = name,
-        imageUrl = sprites.other.officialArtwork.frontDefault,
+        imageUrl = sprites.other.dreamWorld.frontDefault,
         height = height,
         types = types.map { it.type.name },
         weight = weight,

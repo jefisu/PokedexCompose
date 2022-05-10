@@ -2,7 +2,6 @@ package com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,11 +19,11 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.jefisu.pokedexcompose.R
 import com.jefisu.pokedexcompose.core.components.RotatingImageAnimation
+import com.jefisu.pokedexcompose.core.components.SvgImage
 import com.jefisu.pokedexcompose.feature_pokedex.domain.model.Pokemon
 import com.jefisu.pokedexcompose.feature_pokedex.util.Page
 import com.jefisu.pokedexcompose.ui.theme.spacing
@@ -35,7 +34,6 @@ import com.jefisu.pokedexcompose.ui.theme.spacing
 @Composable
 fun PokemonInfo(
     modifier: Modifier = Modifier,
-    imgModifier: Modifier = Modifier,
     pokemonInfo: Pokemon,
     pagerState: PagerState,
     backgroundColor: Color,
@@ -77,14 +75,13 @@ fun PokemonInfo(
                     pagerState = pagerState,
                     backgroundColor = backgroundColor,
                     pages = pages,
-                    pokemonInfo = pokemonInfo,
+                    pokemonInfo = pokemonInfo
                 )
             }
         }
-        Image(
-            painter = rememberImagePainter(data = pokemonInfo.imageUrl),
-            contentDescription = null,
-            modifier = imgModifier.graphicsLayer { translationY = 150f }
+        SvgImage(
+            imgUrl = pokemonInfo.imageUrl,
+            modifier = Modifier.size(200.dp)
         )
     }
 }

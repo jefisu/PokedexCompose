@@ -19,7 +19,7 @@ Pokedex app built with Jetpack Compose
 <p align="center">
     <img src="screenshots/pokemon-info-about.png" width="250" alt="Pokemon Info - About">
     <img src="screenshots/pokemon-info-base-stats.png" width="250" alt="Pokemon Info - Base Stats">
-    <img src="screenshots/pokemon-info-moves.png" width="250" alt="Pokemon Info - Moves">
+    <img src="screenshots/pokemon-info-move.png" width="250" alt="Pokemon Info - Moves">
 </p>
 
 ## Development Roadmap
@@ -35,7 +35,6 @@ Pokedex app built with Jetpack Compose
 
 ## Features
 
-- [x] Light/dark mode
 - [x] Home
 - [x] Pokedex
 - [x] Pokedex - Favorites

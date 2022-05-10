@@ -65,3 +65,15 @@ fun parseStatToAbbr(stat: Stat): String {
         else -> ""
     }
 }
+
+fun parseStatToColor(stat: Stat): Color {
+    return when(stat.stat.name.lowercase()) {
+        "hp" -> HPColor
+        "attack" -> AtkColor
+        "defense" -> DefColor
+        "special-attack" -> SpAtkColor
+        "special-defense" -> SpDefColor
+        "speed" -> SpdColor
+        else -> Color.White
+    }
+}

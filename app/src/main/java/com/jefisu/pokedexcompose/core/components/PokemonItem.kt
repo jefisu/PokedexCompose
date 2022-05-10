@@ -1,10 +1,8 @@
 package com.jefisu.pokedexcompose.core.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.LocalContentColor
@@ -16,12 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
 import com.jefisu.pokedexcompose.R
 import com.jefisu.pokedexcompose.feature_pokedex.domain.model.Pokemon
 import com.jefisu.pokedexcompose.feature_pokedex.util.parseTypeToColor
@@ -35,7 +31,6 @@ fun PokemonItem(
     boxShape: Shape = RoundedCornerShape(16.dp),
     boxColor: Color = parseTypeToColor(pokemonInfo.types.first()),
     backgroundImageSize: Dp = 150.dp,
-    foregroundImageSize: Dp = 100.dp,
     onClick: () -> Unit
 ) {
     Box(
@@ -77,15 +72,10 @@ fun PokemonItem(
                 image = R.drawable.ic_pokeball,
                 size = backgroundImageSize
             )
-            Image(
-                painter = rememberImagePainter(
-                    data = pokemonInfo.imageUrl
-                ),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
+            SvgImage(
+                imgUrl = pokemonInfo.imageUrl,
                 modifier = Modifier
-                    .size(foregroundImageSize)
-                    .clip(CircleShape)
+                    .size(100.dp)
                     .align(Alignment.Center)
             )
         }

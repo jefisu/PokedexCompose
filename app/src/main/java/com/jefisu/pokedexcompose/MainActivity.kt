@@ -23,15 +23,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PokedexComposeTheme {
+            PokedexComposeTheme(darkTheme = true) {
                 val navController = rememberNavController()
                 val pagerState = rememberPagerState()
-               Surface {
-                   Navigation(
-                       navController = navController,
-                       pagerState = pagerState,
-                       context = this
-                   )
+                Surface {
+                    Navigation(
+                        navController = navController,
+                        pagerState = pagerState,
+                        context = this
+                    )
                 }
             }
         }

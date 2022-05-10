@@ -3,7 +3,6 @@ package com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
@@ -81,39 +80,32 @@ fun InfoTabs(
         ) {
             when (page) {
                 is Page.About -> {
-                    Box(
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(
+                            space = MaterialTheme.spacing.extraLarge,
+                            alignment = Alignment.CenterHorizontally
+                        ),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(color)
+                            .padding(vertical = MaterialTheme.spacing.small)
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(
-                                space = MaterialTheme.spacing.extraLarge,
-                                alignment = Alignment.CenterHorizontally
-                            ),
+                        CharacteristicsAbout(
+                            painter = R.drawable.ic_balance,
+                            value = pokemonInfo.weight.toString(),
+                            dataUnit = "Kg"
+                        )
+                        Divider(
+                            color = MaterialTheme.colors.onSurface,
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = MaterialTheme.spacing.small)
-                        ) {
-                            CharacteristicsAbout(
-                                painter = R.drawable.ic_balance,
-                                value = pokemonInfo.weight.toString(),
-                                dataUnit = "Kg"
-                            )
-                            Divider(
-                                color = MaterialTheme.colors.onSurface,
-                                modifier = Modifier
-                                    .height(50.dp)
-                                    .width(2.dp)
-                            )
-                            CharacteristicsAbout(
-                                painter = R.drawable.ic_height,
-                                value = pokemonInfo.height.toString(),
-                                dataUnit = "m"
-                            )
-                        }
+                                .height(50.dp)
+                                .width(2.dp)
+                        )
+                        CharacteristicsAbout(
+                            painter = R.drawable.ic_height,
+                            value = pokemonInfo.height.toString(),
+                            dataUnit = "m"
+                        )
                     }
                     Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
                     Text(
@@ -149,7 +141,6 @@ fun InfoTabs(
                     ) {
                         BaseStats(
                             pokemonInfo = pokemonInfo,
-                            color = backgroundColor,
                             modifier = Modifier.fillMaxWidth()
                         )
                     }

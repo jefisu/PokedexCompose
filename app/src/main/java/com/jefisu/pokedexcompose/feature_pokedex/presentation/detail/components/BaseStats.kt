@@ -1,41 +1,46 @@
 package com.jefisu.pokedexcompose.feature_pokedex.presentation.detail.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.jefisu.pokedexcompose.feature_pokedex.domain.model.Pokemon
 import com.jefisu.pokedexcompose.feature_pokedex.util.parseStatToAbbr
-import com.jefisu.pokedexcompose.ui.theme.spacing
+import com.jefisu.pokedexcompose.feature_pokedex.util.parseStatToColor
 
 @Composable
 fun BaseStats(
     modifier: Modifier = Modifier,
     pokemonInfo: Pokemon,
-    animDelayPerItem: Int = 100,
-    color: Color
 ) {
-    val maxBaseStat = remember {
-        pokemonInfo.stats.maxOf { it.baseStat }
-    }
+    val maxStatValue = pokemonInfo.stats.maxOf { it.baseStat }
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        for (stat in pokemonInfo.stats) {
-            Box(modifier = Modifier.fillMaxWidth()) {
-                Text(text = parseStatToAbbr(stat))
+        pokemonInfo.stats.forEach { stat ->
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.CenterStart
+            ) {
+                Text(
+                    text = parseStatToAbbr(stat),
+                )
+                Text(
+                    text = stat.baseStat.toString(),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .width(80.dp)
+                        .graphicsLayer { translationX = 60.dp.toPx() }
+                )
                 StatItem(
-                    statInitialValue = stat.baseStat,
-                    statMaxValue = maxBaseStat,
-                    statColor = color,
-                    animDelay = 1 * animDelayPerItem
+                    statValue = stat.baseStat,
+                    maxStatValue = maxStatValue,
+                    statColor = parseStatToColor(stat)
                 )
             }
         }
