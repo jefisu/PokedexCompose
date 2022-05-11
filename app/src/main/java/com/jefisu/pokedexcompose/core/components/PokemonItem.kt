@@ -67,7 +67,9 @@ fun PokemonItem(
                 }
             }
         }
-        Box {
+        Box(
+            contentAlignment = Alignment.Center
+        ) {
             RotatingImageAnimation(
                 image = R.drawable.ic_pokeball,
                 size = backgroundImageSize
@@ -76,7 +78,6 @@ fun PokemonItem(
                 imgUrl = pokemonInfo.imageUrl,
                 modifier = Modifier
                     .size(100.dp)
-                    .align(Alignment.Center)
             )
         }
     }
